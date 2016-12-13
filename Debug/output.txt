@@ -1,0 +1,328 @@
+Loading....
+Loading Complete
+Solid Tile Num : 6
+Bound : (80,80)
+Tile Creation Start....
+Tile Creation Complete
+
+Soild Tile count = 6
+Enumeration Start....
+Enumeration Complete
+
+Enumeration Solid count : 6
+
+Enumeration Space count : 5
+Tile deletion Start....
+delete 0076B4E0
+delete 0076E0E0
+delete 007687A8
+delete 0076C9A0
+delete 0076AB78
+delete 00768668
+delete 00777888
+delete 00777820
+delete 0076B568
+delete 00777780
+Tile deletion Complete
+After All tile delete : 
+Enumeration Start....
+Enumeration Complete
+
+Enumeration Solid count : 0
+
+Enumeration Space count : 1
+請按任意鍵繼續 . . . 
+Visual Leak Detector read settings from: C:\Program Files (x86)\Visual Leak Detector\vld.ini
+Visual Leak Detector Version 2.5 installed.
+WARNING: Visual Leak Detector detected memory leaks!
+---------- Block 14 at 0x00764BB8: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 11 at 0x00768668: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    05 00 00 00    00 00 00 00    05 00 00 00    05 00 00 00     ........ ........
+    46 00 00 00    05 00 00 00    46 00 00 00    00 00 00 00     F....... F.......
+    80 77 77 00    88 78 77 00    20 78 77 00    00 00 00 00     .ww..xw. .xw.....
+    00 CD CD CD    03 00 00 00                                   ........ ........
+
+
+---------- Block 13 at 0x007687A8: 56 bytes ----------
+  Leak Hash: 0xBE6CE9FD, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (409): CornorStitching.exe!TileCreation::VerticalSpiltRight() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (559): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    3C 00 00 00    05 00 00 00    3C 00 00 00    0A 00 00 00     <....... <.......
+    50 00 00 00    0A 00 00 00    50 00 00 00    05 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    A0 C9 76 00    68 86 76 00     .ww..... ..v.h.v.
+    00 CD CD CD    01 00 00 00                                   ........ ........
+
+
+---------- Block 12 at 0x0076AB78: 56 bytes ----------
+  Leak Hash: 0x02E15E24, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (350): CornorStitching.exe!TileCreation::VerticalSpiltLeft() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (558): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    00 00 00 00    05 00 00 00    00 00 00 00    0A 00 00 00     ........ ........
+    50 00 00 00    0A 00 00 00    50 00 00 00    05 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    00 00 00 00    20 78 77 00     .ww..... .....xw.
+    00 CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 9 at 0x0076B4E0: 56 bytes ----------
+  Leak Hash: 0xE3604723, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (196): CornorStitching.exe!TileCreation::SetTile() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (961): CornorStitching.exe!main() + 0xD bytes
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    05 00 00 00    05 00 00 00    05 00 00 00    0A 00 00 00     ........ ........
+    32 00 00 00    0A 00 00 00    32 00 00 00    05 00 00 00     2....... 2.......
+    80 77 77 00    A0 C9 76 00    78 AB 76 00    68 86 76 00     .ww...v. x.v.h.v.
+    00 CD CD CD    00 00 00 00                                   ........ ........
+
+
+---------- Block 10 at 0x0076B568: 56 bytes ----------
+  Leak Hash: 0x7A4EFC83, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (221): CornorStitching.exe!TileCreation::HorizontalSpiltTop() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (531): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    46 00 00 00    46 00 00 00    46 00 00 00    50 00 00 00     F...F... F...P...
+    50 00 00 00    50 00 00 00    50 00 00 00    46 00 00 00     P...P... P...F...
+    00 00 00 00    00 00 00 00    10 75 77 00    80 77 77 00     ........ .uw..ww.
+    00 CD CD CD    05 00 00 00                                   ........ ........
+
+
+---------- Block 15 at 0x0076C9A0: 56 bytes ----------
+  Leak Hash: 0x02E15E24, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (350): CornorStitching.exe!TileCreation::VerticalSpiltLeft() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (558): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    32 00 00 00    05 00 00 00    32 00 00 00    0A 00 00 00     2....... 2.......
+    50 00 00 00    0A 00 00 00    50 00 00 00    05 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    78 AB 76 00    68 86 76 00     .ww..... x.v.h.v.
+    00 CD CD CD    02 00 00 00                                   ........ ........
+
+
+---------- Block 17 at 0x0076CB70: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 18 at 0x0076CBD8: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 16 at 0x0076E0E0: 56 bytes ----------
+  Leak Hash: 0xBE6CE9FD, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (409): CornorStitching.exe!TileCreation::VerticalSpiltRight() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (559): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    46 00 00 00    05 00 00 00    46 00 00 00    0A 00 00 00     F....... F.......
+    50 00 00 00    0A 00 00 00    50 00 00 00    05 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    A8 87 76 00    88 78 77 00     .ww..... ..v..xw.
+    00 CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 23 at 0x00777510: 56 bytes ----------
+  Leak Hash: 0x02E15E24, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (350): CornorStitching.exe!TileCreation::VerticalSpiltLeft() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (558): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    00 00 00 00    00 00 00 00    00 00 00 00    50 00 00 00     ........ ....P...
+    50 00 00 00    50 00 00 00    50 00 00 00    00 00 00 00     P...P... P.......
+    00 00 00 00    00 00 00 00    00 00 00 00    00 00 00 00     ........ ........
+    00 CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 21 at 0x00777578: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD    CD CD CD CD    CD CD CD CD     ........ ........
+    CD CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 22 at 0x00777780: 56 bytes ----------
+  Leak Hash: 0x1D866764, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (282): CornorStitching.exe!TileCreation::HorizontalSpiltBottom() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (537): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    00 00 00 00    00 00 00 00    00 00 00 00    46 00 00 00     ........ ....F...
+    50 00 00 00    46 00 00 00    50 00 00 00    00 00 00 00     P...F... P.......
+    10 75 77 00    00 00 00 00    00 00 00 00    00 00 00 00     .uw..... ........
+    00 CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 19 at 0x00777820: 56 bytes ----------
+  Leak Hash: 0x02E15E24, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (350): CornorStitching.exe!TileCreation::VerticalSpiltLeft() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (558): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    00 00 00 00    00 00 00 00    00 00 00 00    05 00 00 00     ........ ........
+    50 00 00 00    05 00 00 00    50 00 00 00    00 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    00 00 00 00    00 00 00 00     .ww..... ........
+    00 CD CD CD    CD CD CD CD                                   ........ ........
+
+
+---------- Block 20 at 0x00777888: 56 bytes ----------
+  Leak Hash: 0xBE6CE9FD, Count: 1, Total 56 bytes
+  Call Stack (TID 10248):
+    MSVCR120D.dll!malloc()
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (409): CornorStitching.exe!TileCreation::VerticalSpiltRight() + 0xA bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (559): CornorStitching.exe!TileCreation::TileCreat() + 0x10 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (895): CornorStitching.exe!Layout::OP2() + 0x19 bytes
+    c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp (963): CornorStitching.exe!main()
+    f:\dd\vctools\crt\crtw32\dllstuff\crtexe.c (466): CornorStitching.exe!mainCRTStartup()
+    KERNEL32.DLL!BaseThreadInitThunk() + 0x24 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x439 bytes
+    ntdll.dll!RtlSubscribeWnfStateChangeNotification() + 0x404 bytes
+  Data:
+    46 00 00 00    00 00 00 00    46 00 00 00    05 00 00 00     F....... F.......
+    50 00 00 00    05 00 00 00    50 00 00 00    00 00 00 00     P....... P.......
+    80 77 77 00    00 00 00 00    20 78 77 00    00 00 00 00     .ww..... .xw.....
+    00 CD CD CD    04 00 00 00                                   ........ ........
+
+
+Visual Leak Detector detected 15 memory leaks (1380 bytes).
+Largest number used: 1890 bytes.
+Total allocations: 1890 bytes.
+Visual Leak Detector is now exiting.
+l  :  0 : 0,0,0,80,80,80,80,0,space
+Allocate Tile times: 15, Delete(Merge) Tile times: 10
+
+Elapsed 0.00 seconds

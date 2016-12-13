@@ -6,21 +6,8 @@
 #include <iostream>
 #include <stdlib.h> 
 #include <crtdbg.h>  
+//#include <vld.h>
 using namespace std;
-
-#define _CRTDBG_MAP_ALLOC 
-
-#ifdef _DEBUG 
-#ifndef DBG_NEW 
-#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
-#define new DBG_NEW 
-#endif 
-#endif  // _DEBUG 
-
-
-
-int newSize = 0;
-int delSize = 0;
 
 int layout_width;
 int layout_height;
@@ -31,6 +18,9 @@ B-------C
 A-------D
 */
 int lay[8] = {0};
+
+int allocateMemory = 0;
+int FreeMemory = 0;
 
 typedef struct tile {
 	int point[8];
@@ -46,15 +36,11 @@ Tile *layout; // original tile
 Tile *search_start;
 
 void TileKill(Tile *tile){
-	/*tile->rt = NULL;
-	tile->lb = NULL;
-	tile->bl = NULL;
-	tile->tr = NULL;*/
+	FreeMemory++;
+	//printf("delete %p\n", tile);
 	tile = NULL;
 	delete tile;
 }
-
-
 
 class TileMerge{
 	public:
@@ -71,13 +57,21 @@ class TileMerge{
 				triger = true;
 			}
 
-			if (up == NULL)
-				return down;
-			if (down == NULL)
-				return up;
+			if (up == NULL){
 
-			up->point[0] = down->point[0]; up->point[1] = down->point[1];
-			up->point[6] = down->point[6]; up->point[7] = down->point[7];
+				return down;
+			}
+				
+			if (down == NULL){
+
+				return up;
+			}
+				
+
+			//up->point[0] = down->point[0];
+			up->point[1] = down->point[1];
+			//up->point[6] = down->point[6]; 
+			up->point[7] = down->point[7];
 
 			up->bl = down->bl;
 			up->lb = down->lb;
@@ -129,13 +123,17 @@ class TileMerge{
 				triger = true;
 			}
 
-			if (left == NULL)
+			if (left == NULL){
 				return right;
-			if (right == NULL)
+			}
+				
+			if (right == NULL){
 				return left;
+			}
+				
 
-			left->point[4] = right->point[4]; left->point[5] = right->point[5];
-			left->point[6] = right->point[6]; left->point[7] = right->point[7];
+			left->point[4] = right->point[4]; //left->point[5] = right->point[5];
+			left->point[6] = right->point[6]; //left->point[7] = right->point[7];
 
 			left->rt = right->rt;
 			left->tr = right->tr;
@@ -194,6 +192,8 @@ class TileCreation{
 		Tile* SetTile(int a[]) {
 			Tile *t;
 			t = (struct tile *)malloc(sizeof(struct tile));
+			//printf("add %d : %p\n", allocateMemory, t);
+			allocateMemory++;
 			for (int i = 0; i < 8; i++)
 				t->point[i] = a[i];
 			t->solid = false;
@@ -217,9 +217,9 @@ class TileCreation{
 				return tile;
 			}
 
-			Tile *New;
-			New = (struct tile *)malloc(sizeof(struct tile));
-
+			Tile *New = (struct tile *)malloc(sizeof(struct tile));
+			//printf("add %d : %p\n", allocateMemory, New);
+			allocateMemory++;
 			for (int i = 0; i < 8; i++)              // Tile 座
 				New->point[i] = tile->point[i];
 			New->point[1] = y; New->point[7] = y;   // 座校正
@@ -227,8 +227,6 @@ class TileCreation{
 			tile->point[3] = y; tile->point[5] = y;
 
 			New->solid = tile->solid;
-
-
 
 			New->rt = tile->rt;  // New 的 rt  原Tile 指的一
 			New->tr = tile->tr;  // New 的 tr  原Tile 指的一
@@ -279,12 +277,14 @@ class TileCreation{
 			|       OLD->NEW      |
 			|*********************|
 			*/
-			Tile *New;
-			New = (struct tile *)malloc(sizeof(struct tile));
-
 			if (y - tile->point[1] == 0){ // no space tile
 				return tile;
 			}
+
+			Tile *New = (struct tile *)malloc(sizeof(struct tile));
+			//printf("add %d : %p\n", allocateMemory, New);
+			allocateMemory++;
+
 
 			for (int i = 0; i < 8; i++)              // Tile 座
 				New->point[i] = tile->point[i];
@@ -348,8 +348,9 @@ class TileCreation{
 			}
 
 
-			Tile *New;
-			New = (struct tile *)malloc(sizeof(struct tile));
+			Tile *New = (struct tile *)malloc(sizeof(struct tile));
+			//printf("add %d : %p\n", allocateMemory, New);
+			allocateMemory++;
 			for (int i = 0; i < 8; i++)              // Tile 座
 				New->point[i] = tile->point[i];
 			New->point[4] = x; New->point[6] = x;   // 座校正
@@ -407,8 +408,9 @@ class TileCreation{
 				return tile;
 			}
 
-			Tile *New;
-			New = (struct tile *)malloc(sizeof(struct tile));
+			Tile *New = (struct tile *)malloc(sizeof(struct tile));
+			//printf("add %d : %p\n", allocateMemory, New);
+			allocateMemory++;
 			for (int i = 0; i < 8; i++)              // Tile 座
 				New->point[i] = tile->point[i];
 			New->point[0] = x; New->point[2] = x;   // 座校正
@@ -454,7 +456,6 @@ class TileCreation{
 
 		Tile *PointFinding(Tile *tile, int x, int y) {
 			Tile *start = tile;
-			Tile *temp = NULL;
 			bool foundTile = false;
 			while (foundTile == false) { // trace tile by "y" , avoid misalignment
 
@@ -477,28 +478,12 @@ class TileCreation{
 					start = start->tr;
 				}
 				
-				if (temp == start){
-					TilePrint("start",0,start);
-					TilePrint("start->lb", 0, start->lb);
-					TilePrint("start->lb->rt", 0, start->lb->rt);
-					TilePrint("start->rt", 0, start->rt);
-					TilePrint("start->tr", 0, start->tr);
-					TilePrint("start->bl", 0, start->bl);
-					cout << y << endl;
-					cout << (start->point[1] <= y) << endl;
-					cout << (start->point[3] > y | start->rt == NULL) << endl;
-					cout << (start->point[0] <= x) << endl;
-					cout << (start->point[4] > x | start->tr == NULL) << endl;
-					cout << foundTile << endl;
-					system("pause");
-				}
 
 				// double check to avoid misalignment
 				foundTile = (start->point[1] <= y ) & 
 							(start->point[3] > y  | start->rt == NULL) & 
 							(start->point[0] <= x ) &
 							(start->point[4] > x  | start->tr == NULL);
-				temp = start;
 			}
 			return start;
 		}
@@ -550,12 +535,9 @@ class TileCreation{
 			if (StartTile != Start){  // NOT no space spilt
 				Start = Start->lb;
 			}
-			else{
-				TileKill(StartTile);
-			}
 
 			Tile *EndTile = PointFinding(layout, (vleft + vright) / 2, hbot);
-			Tile *End = HorizontalSpiltBottom(EndTile, hbot);  
+			Tile *End = HorizontalSpiltBottom(EndTile, hbot); 
 
 			Tile *tempy = Start;
 			Tile *xTile = NULL;
@@ -572,13 +554,8 @@ class TileCreation{
 				}
 				// Spilt x
 				Tile *xleft = VerticalSpiltLeft(xTile, vleft);
-				if (xleft == xTile){ // no space split
-					TileKill(xleft);
-				}
 				Tile *xright = VerticalSpiltRight(xTile, vright);
-				if (xright == xTile){ // no space split
-					TileKill(xright);
-				}
+
 				NewTile = tm.VerticalMerge(NewTile, xTile);   // Merge xt and NewTile to -> NewTile
 				tempy = xTile->lb;
 
@@ -592,15 +569,14 @@ class TileCreation{
 					int width1 = tempUp->point[4] - tempUp->point[2];
 					int width2 = tempDown->point[4] - tempDown->point[2];
 					if (width1 == width2 && width1 != 0 && tempUp->point[0] == tempDown->point[0]){
-						if (tempUp->solid == false && tempDown->solid == false)
+						if (tempUp->solid == false && tempDown->solid == false){
 							tm.VerticalMerge(tempUp, tempDown);
+						}	
 					}
 					tempDown = tempUp;
 					tempUp = tempUp->rt;
 				}
 			}
-
-
 
 			// Merge 右邊相鄰且可合併的 Tile //problem
 			if (NewTile->tr != NULL && NewTile->tr->lb != NULL){
@@ -703,68 +679,87 @@ public:
 		int x_rightUp = right->point[3]; int x_rightDown = right->point[1];
 
 		Tile *lu = NULL; Tile *ld = NULL; Tile *ru = NULL; Tile *rd = NULL;
+		Tile *temp = NULL;
 
-		if (left->point[3] > right->point[3]){
+		if (x_leftUp > x_rightUp){
 			lu = tc.HorizontalSpiltTop(left, x_rightUp);
-			if (i == 235505)cout << "1\n";
 		}
 
-		if (left->point[1] < right->point[1]){
+		if (x_leftDown < x_rightDown){
 			ld = tc.HorizontalSpiltTop(left, x_rightDown);
-			if (i == 235505)cout << "2\n";
 		}
 
-		if (right->point[3] > left->point[3]){
+		if (x_rightUp > x_leftUp){
 			ru = tc.HorizontalSpiltTop(right, x_leftUp);
-			if (i == 235505)cout << "3\n";
 		}
 
-		if (right->point[1] < left->point[1]){
+		if (x_rightDown < x_leftDown){
 			rd = tc.HorizontalSpiltTop(right, x_leftDown);
-			if (i == 235505)cout << "4\n";
 		}
-		
-		// merge left and right tile
+
+		// merge left and right tile -problem 47441
 		if (ld == NULL && rd == NULL){
-			ld = tm.HorizontalMerge(left, right);
-			if (i == 235505)cout << "1\n";
+			int height1 = left->point[3] - left->point[1];
+			int height2 = right->point[3] - right->point[1];
+			if (height1 == height2){
+				ld = tm.HorizontalMerge(left, right);
+			}
+			else{
+				tc.TilePrint("Error Tile left:", i, left);
+				tc.TilePrint("Error Tile right:", i, right);
+				cout << "---\n";
+			}
 		}
 		else if (ld != NULL && rd == NULL){
-			ld = tm.HorizontalMerge(ld, right);
-			if (i == 235505)cout << "2\n";
+			int height1 = ld->point[3] - ld->point[1];
+			int height2 = right->point[3] - right->point[1];
+			if (height1 == height2){
+				ld = tm.HorizontalMerge(ld, right);
+			}
+			else{
+				tc.TilePrint("Error Tile ld:", i, ld);
+				tc.TilePrint("Error Tile right:", i, right);
+				cout << "---\n";
+			}
 		}
 		else if (ld == NULL && rd != NULL){
-			ld = tm.HorizontalMerge(left, rd);
-			if (i == 235505)cout << "3\n";
+			int height1 = left->point[3] - left->point[1];
+			int height2 = rd->point[3] - rd->point[1];
+			if (height1 == height2){
+				ld = tm.HorizontalMerge(left, rd);
+			}
+			else{
+				tc.TilePrint("Error Tile left:", i, left);
+				tc.TilePrint("Error Tile rd:", i, rd);
+				cout << "---\n";
+			}
 		}
 		else{ // ld != NULL && rd != NULL
-			ld = tm.HorizontalMerge(ld, rd);
-			if (i == 235505)cout << "4\n";
-		}
-
-		if (i == 235505){
-			tc.TilePrint("ld : ", 0, ld);
+			int height1 = ld->point[3] - ld->point[1];
+			int height2 = rd->point[3] - rd->point[1];
+			if (height1 == height2){
+				ld = tm.HorizontalMerge(ld, rd);
+			}
+			else{
+				tc.TilePrint("Error Tile ld:", i, ld);
+				tc.TilePrint("Error Tile rd:", i, rd);
+				cout << "---\n";
+			}
 		}
 
 		// merge up down if possible
-		Tile *temp = ld->rt;
+		temp = ld->rt;
 		if (temp != NULL){
 			int width1 = temp->point[4] - temp->point[0];
 			int width2 = ld->point[4] - ld->point[0];
 			if (temp != NULL && temp->point[0] == ld->point[0] && width1 == width2){
 				if (temp->solid == false && ld->solid == false){
 					ld = tm.VerticalMerge(temp, ld);
-				}
-					
+				}	
 			}
 		}
 
 		temp = ld->lb;
-
-		if (i == 235505){
-			tc.TilePrint("temp : ", 0, temp);
-		}
-
 		if (temp != NULL){
 			int width1 = temp->point[4] - temp->point[0];
 			int width2 = ld->point[4] - ld->point[0];
@@ -775,14 +770,6 @@ public:
 			}
 		}
 
-		if (i == 235505){
-			tc.TilePrint("ld : ", 1, ld );
-			tc.TilePrint("temp  : ", 1, temp);
-			tc.TilePrint("search_start  : ", 1, search_start);
-			temp = tc.PointFinding(search_start, 1, 1);
-			tc.TilePrint("temp : ", 1, temp);
-		}
-
 		return ld;
 	}
 	void TileDelete(int i,Tile *dtile){
@@ -791,8 +778,9 @@ public:
 		int bottom = dtile->point[1];
 		int height = dtile->point[3];
 
+		Tile *temp = NULL;
 		// 2) trace through right edge
-		Tile *temp = dtile->tr;
+		temp = dtile->tr;
 		while (temp != NULL && temp->bl == dtile){ // trace through right edge
 			Tile *Next = temp->lb;
 			if (temp->solid==false && dtile->solid==false)
@@ -800,9 +788,7 @@ public:
 			temp = Next;
 		}
 
-
 		//4) trace through left edge , but dtile's stitching are change
-		// 就是這一段讓結構變了!!!
 		temp = dtile->bl;
 		while (temp != NULL && temp->point[3] <= height){ // trace through left edge without stitching
 			Tile *tp = temp->tr;
@@ -816,114 +802,8 @@ public:
 			}
 			temp = Next;
 		}
-
 	}
 };
-
-Tile *PFinding2(Tile *tile, int x, int y) {
-	TileCreation tc;
-	Tile *start = tile; // tp
-	if (y < start->point[1]){
-		do{
-			start = start->lb;
-		} while (y < start->point[1]);
-	}
-	else{
-		while (y >= start->point[3])
-		{
-			start = start->rt;
-		}
-	}
-	if (x < start->point[0])
-		do
-		{
-			do {
-				start = start->bl;
-			} while (x < start->point[0]);
-
-			if (y < start->point[3]) break;
-
-			do {
-				start = start->rt;
-			} while (y >= start->point[3]);
-
-		} while (x < start->point[0]);
-	else{
-		while (x >= start->point[4])
-		{
-			do { 
-				start = start->tr; 
-			} while (x >= start->point[4]);
-
-			if (y >= start->point[1]) break;
-
-			do{ 
-				start = start->lb;
-			} while (y < start->point[1]);
-		}
-	}
-
-	return start;
-}
-
-Tile *PFinding(Tile *tile, int x, int y) {
-	TileCreation tc;
-	Tile *start = tile;
-	Tile *temp = NULL;
-	bool foundTile = false;
-	while (foundTile == false) { // trace tile by "y" , avoid misalignment
-
-		// 剛好在邊上-> 算上、右方
-		while (start != NULL && start->point[1] > y){       // target is lower than this tile
-			start = start->lb;
-		}
-		//tc.TilePrint("start", 0, start);
-		while (start != NULL && start->point[3] <= y){       // target is higher than this tile
-			if (start->point[3] == y){
-				if (start->rt == NULL)break;  // 超出範圍
-			}
-			start = start->rt;
-		}
-		//tc.TilePrint("start", 0, start);
-		while (start != NULL && start->point[0] > x){       // target is lefter than this tile
-
-			if (start->point[0] > x)
-				start = start->bl;
-
-			if (start->point[0] <= x){
-				if(start->point[3] <= y){ 
-					start = start->rt;
-				}
-			}
-		}
-		//tc.TilePrint("start", 0, start);
-		while (start != NULL && start->point[4] <= x){       // target is righter than this tile
-			if (start->point[4] == x){
-				if (start->tr == NULL)break;  // 超出範圍
-			}
-			if (start->point[4] <= x)
-				start = start->tr;
-
-			if (start->point[4] > x){
-				if (start->point[1] > y){
-					start = start->lb;
-					continue;
-				}
-			}
-		}
-		/*tc.TilePrint("start", 0, start);
-
-		system("pause");*/
-
-		// double check to avoid misalignment
-		foundTile = (start->point[1] <= y) &
-			(start->point[3] > y | start->rt == NULL) &
-			(start->point[0] <= x) &
-			(start->point[4] > x | start->tr == NULL);
-		temp = start;
-	}
-	return start;
-}
 
 class Layout{
 	int cellNum;
@@ -1015,24 +895,18 @@ public:
 			
 			Tile* add;
 			add = tc.TileCreat(i,index[i]);
-			//tc.TilePrint("Tile",i,add);
 			OutofRange_check(add);
-
-			/*tc.TilePrint("Tile->rt", i, add->rt);
-			tc.TilePrint("Tile->tr", i, add->tr);
-			tc.TilePrint("Tile->lb", i, add->lb);
-			tc.TilePrint("Tile->bl", i, add->bl);*/
 
 			add->id = i;
 			index_status[i] = true;
 			search_start = add;
+
 			count++;
 		}
 		cout << "Tile Creation Complete" << endl;
 		cout << "\nSoild Tile count = " << count << endl;
 	}
 	void OP3(){
-		int area[8] = {0,0,0,10,80,10,80,0};
 		AreaEnumeration AE;
 		cout << "Enumeration Start...." << endl;
 		AE.areaEnumeration(lay);
@@ -1044,8 +918,7 @@ public:
 	void OP4(TileCreation tc){
 		TileDeletion td;
 		Tile *dtile = NULL;
-		// 已確認刪除前，所有tile皆可被PointFinding找到。
-		// Tile Delete 錯誤導致搜尋不到
+
 		/*cout << "checking Start...." << endl;
 		for (int i = 0; i < cellNum; i++){
 			if (index_status[i] == true){
@@ -1057,35 +930,20 @@ public:
 		cout << "Tile deletion Start...." << endl;
 		for (int i = 0; i < cellNum; i++){
 			if (index_status[i] == true){
-
-				if (i == 50493){
-					cout << "index-50493 : ";
-					for (int j = 0; j < 8; j++){
-						printf("%d,", index[i][j]);
-					}
-					cout << "\n";
-					tc.TilePrint("search_start  : ", 0, search_start);
-					dtile = PFinding(search_start, index[i][0], index[i][1]);
-					system("pause");
-				}
-
-				dtile = PFinding(search_start, (index[i][0] + index[i][4]) / 2, (index[i][1] + index[i][3]) / 2);
-
+				dtile = tc.PointFinding(search_start, (index[i][0] + index[i][4]) / 2, (index[i][1] + index[i][3]) / 2);
 				while (dtile == search_start){
 					search_start = tc.PointFinding(search_start, 0, 0);
-					/*tc.TilePrint("dtile  : ", 0, dtile);
-					tc.TilePrint("search_start  : ", 0, search_start);
-					system("pause");*/
 				}
-				
 				td.TileDelete(i,dtile);
-
-				
-				if (i % 50000==0)printf("%d\n", i);
 			}
 		}
 		cout << "Tile deletion Complete" << endl;
-
+	}
+	~Layout(){
+		delete index_status;
+		for (int i = 0; i<cellNum; i++)
+			delete index[i];
+		delete index;
 	}
 };
 
@@ -1095,22 +953,23 @@ int main(){
 
 	start = clock();
 
-	FILE *fp = fopen("RSA/MT1org.trp", "r"); //input file
+	FILE *fp = fopen("chip/MET1.trp", "r"); //input file
 	TileCreation tc;
 	Layout lyt(fp);
 	
 	/*Operation 1~4*/
 	lyt.OP1();
 	layout = tc.SetTile(lay);
-	lyt.OP2(tc);
-	lyt.OP3();
+	lyt.OP2(tc); 
+	lyt.OP3();      // no memory leak
 	lyt.OP4(tc);
 	printf("After All tile delete : \n");
-	lyt.OP3();
+	lyt.OP3();      // no memory leak
 	Tile *l = tc.PointFinding(search_start, 1, 1);
-	tc.TilePrint("l  : ", 0, l);
+	tc.TilePrint("last : ", 0, l);
+	printf("last : %p\n", l);
 	stop = clock();
-
+	printf("Allocate Tile times: %d, Delete(Merge) Tile times: %d\n", allocateMemory, FreeMemory);
 
 	printf("\nElapsed %.2lf seconds\n", (double)(stop - start) / CLOCKS_PER_SEC);
 	system("pause");

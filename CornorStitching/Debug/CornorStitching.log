@@ -1,11 +1,5 @@
 ﻿  CornorStitching.cpp
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(489): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(491): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(498): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(500): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(824): warning C4101: 'tc' : unreferenced local variable
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(920): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(922): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(870): warning C4101: 'tc' : unreferenced local variable
-c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(1012): warning C4553: '==' : operator has no effect; did you intend '='?
+c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(484): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(486): warning C4554: '|' : check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\cxzas\desktop\cornorstitching\cornorstitching\cornorstitching.cpp(892): warning C4553: '==' : operator has no effect; did you intend '='?
   CornorStitching.vcxproj -> C:\Users\cxzas\Desktop\CornorStitching\Debug\CornorStitching.exe
